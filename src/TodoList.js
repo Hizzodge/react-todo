@@ -1,25 +1,13 @@
 import React from "react";
+import TodoListItem from "./TodoListItem";
 
-const todoList = [
-  {
-    id: 1,
-    title: "Complete assignment",
-  },
-  {
-    id: 2,
-    title: "Complete assignment",
-  },
-  {
-    id: 3,
-    title: "Complete assignment",
-  },
-];
 
-const TodoList = () => {
+
+const TodoList = (props) => {
   return (
     <ul>
-      {todoList.map((obj) => (
-        <li key={obj.id}>{obj.title}</li>
+      {props.list.map((obj) => (
+        <TodoListItem obj={obj} key={obj.id}/>
       ))}
     </ul>
   );

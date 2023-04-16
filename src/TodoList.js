@@ -3,10 +3,10 @@ import TodoListItem from "./TodoListItem";
 
 
 
-const TodoList = (props) => {
+const TodoList = ({todoList}) => {
   return (
     <ul>
-      {props.list.map((obj) => (
+      {todoList.map((obj) => (
         <TodoListItem obj={obj} key={obj.id}/>
       ))}
     </ul>

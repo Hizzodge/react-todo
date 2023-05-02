@@ -1,8 +1,7 @@
-import React from "react";
 
-const TodoListItem = ({obj}) => {
+const TodoListItem = ({obj, onRemoveTodo}) => {
    return (
-    <li>{obj.title}</li>
+    <li>{obj.title} <button type="button" onClick={() => onRemoveTodo(obj)}>Remove</button></li>
    )
 }
 

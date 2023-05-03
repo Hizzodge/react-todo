@@ -16,16 +16,21 @@ import AddTodoForm from "./AddTodoForm";
 
 function App() {
   // const [todoList, setTodoList] = useSemiPersistentState('')
-  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('savedTodoList')) || []);
+  const [todoList, setTodoList] = useState([]);
 
   useEffect(() => {
-    const promise = new Promise((resolve, reject) =>{
+    const MyPromise = new Promise((resolve, reject) =>{
       setTimeout(() =>{
-
+        resolve({data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || []}})
       },2000)
     });
-    return promise;
+    MyPromise.then((result) => {
+      console.log(result)
+      setTodoList([...todoList,result])
+    })
+
   },[])
+
  useEffect(() => {
   localStorage.setItem('savedTodoList', JSON.stringify(todoList));
  },[todoList]);

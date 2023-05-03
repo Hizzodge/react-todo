@@ -19,11 +19,12 @@ function App() {
   const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('savedTodoList')) || []);
 
   useEffect(() => {
-    Promise((resolve, reject) =>{
+    const promise = new Promise((resolve, reject) =>{
       setTimeout(() =>{
 
       },2000)
-    })
+    });
+    return promise;
   },[])
  useEffect(() => {
   localStorage.setItem('savedTodoList', JSON.stringify(todoList));

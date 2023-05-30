@@ -3,6 +3,7 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 
+
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,12 +35,16 @@ function App() {
   setTodoList(filteredTodoList);
 }
 
+
   return (
     <>
       <h1>Todo list</h1>
+
       <AddTodoForm onAddTodo={addTodo}/>
+
       {isLoading ? (<p>Loading...</p>) : (<TodoList todoList={todoList} onRemoveTodo={removeTodo}/>)
       }
+
     </>
   );
 }

@@ -8,22 +8,21 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const MyPromise = new Promise((resolve, reject) =>{
+    new Promise((resolve, reject) =>{
       setTimeout(() =>{
-        // console.log(JSON.parse(localStorage.getItem('savedTodoList')) || [])
-        resolve({data: {todoList: JSON.parse(localStorage.getItem('savedTodoList'))|| []}})
+        console.log(JSON.parse(localStorage.getItem('savedTodoLists')))
+        resolve({data: {
+          todoList: JSON.parse(localStorage.getItem('savedTodoLists')) || []}});
       },2000)
-    });
-    MyPromise.then((result) => {
-      setTodoList([result]);
+    }).then((result) => {
+      setTodoList(result.data.todoList);
       setIsLoading(false);
-    })
-
+    });
   },[]);
 
  useEffect(() => {
   if(isLoading === false) {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    localStorage.setItem('savedTodoLists', JSON.stringify(todoList));
   }
  },[todoList]);
 

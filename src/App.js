@@ -8,24 +8,34 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchData = async() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        autorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+      }
+    }
+  }
+
   useEffect(() => {
-    new Promise((resolve, reject) =>{
-      setTimeout(() =>{
-        console.log(JSON.parse(localStorage.getItem('savedTodoLists')))
-        resolve({data: {
-          todoList: JSON.parse(localStorage.getItem('savedTodoLists')) || []}});
-      },2000)
-    }).then((result) => {
-      setTodoList(result.data.todoList);
-      setIsLoading(false);
-    });
-  },[]);
+    fetchData();
+    // new Promise((resolve, reject) =>{
+    //   setTimeout(() =>{
+    //     console.log(JSON.parse(localStorage.getItem('savedTodoLists')))
+    //     resolve({data: {
+    //       todoList: JSON.parse(localStorage.getItem('savedTodoLists')) || []}});
+    //   },2000)
+    // }).then((result) => {
+    //   setTodoList(result.data.todoList);
+    //   setIsLoading(false);
+    // });
+  }, []);
 
  useEffect(() => {
   if(isLoading === false) {
     localStorage.setItem('savedTodoLists', JSON.stringify(todoList));
   }
- },[todoList]);
+ },[todoList, isLoading]);
 
  const addTodo = (newTodo) => {
   setTodoList([...todoList, newTodo])

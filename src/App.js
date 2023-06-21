@@ -71,6 +71,9 @@ function App() {
           {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
        </>
      } />
+     <Route path="/new" element={<h1>New Todo List</h1>}>
+
+     </Route>
     </Routes>
   </BrowserRouter>
   );

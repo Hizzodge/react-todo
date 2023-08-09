@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import InputwithLabel from "./InputWithLabel";
 import style from "./AddTodoForm.module.css";
 
@@ -21,13 +22,16 @@ const AddTodoForm = ({ onAddTodo }) => {
       <InputwithLabel
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
-        className={style.test}
       >
         Title
       </InputwithLabel>
       <button type="submit">Add</button>
     </form>
   );
+};
+
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func,
 };
 
 export default AddTodoForm;

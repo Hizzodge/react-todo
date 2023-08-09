@@ -1,0 +1,16 @@
+.ListItem {
+  color: grey;
+  margin-top: 15px;
+}
+
+.button {
+  width:60px;
+  height:25px;
+  font-size: 11px;
+}
+
+li::marker {
+  content:  "› "; 
+  color: #f4c67a;
+  margin-right: 10px;
+}

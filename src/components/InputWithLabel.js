@@ -24,7 +24,7 @@ const InputwithLabel = ({ todoTitle, handleTitleChange, children }) => {
 };
 
 InputwithLabel.propTypes = {
-  todoTitle: PropTypes.func,
+  todoTitle: PropTypes.string,
   handleTitleChange: PropTypes.func,
   children: PropTypes.any,
 };

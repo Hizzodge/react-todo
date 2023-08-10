@@ -9,12 +9,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchData() {
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const baseId = "appIhM54nikxpnALz";
+    const tableIdOrName = "default";
+    const token =
+      "patszEjqTpWFBgqa1.deeb03c2983da1716e5cc7db1500429cf50b68010ff3d8fca6ae32cc36403217";
+
+    const url = `https://api.airtable.com/v0/${baseId}/${tableIdOrName}`;
 
     const options = {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -28,8 +33,9 @@ function App() {
 
       const todos = data.records.map((record) => ({
         id: record.id,
-        title: record.fields.title,
+        title: record.fields.Title,
       }));
+      console.log(data);
       setTodoList(todos);
     } catch (error) {
       console.error(error.message);

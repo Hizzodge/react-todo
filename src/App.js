@@ -14,7 +14,7 @@ function App() {
     const token =
       "patszEjqTpWFBgqa1.deeb03c2983da1716e5cc7db1500429cf50b68010ff3d8fca6ae32cc36403217";
 
-    const url = `https://api.airtable.com/v0/${baseId}/${tableIdOrName}`;
+    const url = `https://api.airtable.com/v0/${baseId}/${tableIdOrName}?view=Grid%20view&sort[0][field]=Title&sort[0][direction]=asc`;
 
     const options = {
       method: "GET",
@@ -31,11 +31,24 @@ function App() {
 
       const data = await response.json();
 
-      const todos = data.records.map((record) => ({
+      const sortedTodos = data.records.sort((objA, objB) => {
+        const titleA = objA.fields.Title.toLowerCase();
+        const titleB = objB.fields.Title.toLowerCase();
+
+        if (titleA < titleB) {
+          return 1;
+        }
+        if (titleA > titleB) {
+          return -1;
+        }
+        return 0;
+      });
+
+      const todos = sortedTodos.map((record) => ({
         id: record.id,
         title: record.fields.Title,
       }));
-      console.log(data);
+      // console.log(data);
       setTodoList(todos);
     } catch (error) {
       console.error(error.message);
